@@ -1,0 +1,2 @@
+# multiScroller
+複数のウィンドウを同時にスクロールするためのchrome拡張がほしい

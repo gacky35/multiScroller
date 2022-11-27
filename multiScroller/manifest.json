@@ -1,10 +1,10 @@
 {
     "name": "multiScroller",
     "version": "1.0.0",
-    "manifest_version": 3,
+    "manifest_version": 2,
     "description": "Chrome Extension for Scroll Multi Same Web Page",
     "background": {
-        "page": "background.html"
+        "scripts": ["src/background.js"]
     },
     "content_scripts": [{
         "matches": ["http://*/*", "https://*/*"],
@@ -17,6 +17,5 @@
     },
     "permissions": [
         "tabs", "https://*/*", "contextMenus"
-    ],
-    "content_security_policy": "script-src-elem 'self' 'unsafe-inline' object-src 'self';"
+    ]
 }

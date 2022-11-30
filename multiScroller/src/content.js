@@ -8,8 +8,13 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             window.alert('connect pages');
             break;
         case 'startScroll':
-            y = 0;
-            state = (state == "scroll" ? "stop" : "scroll");
+            if (state == 'scroll') {
+                state = 'stop';
+            } else {
+                y = y >= document.documentElement.scrollHeight ? 0 : y;
+                pace = 1;
+                state = 'scroll';
+            }
             scrollPage(5);
             break;
         case 'speedUp':
@@ -25,10 +30,13 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 function scrollPage(speed) {
     y += pace;
+    console.log(y, state, document.documentElement.scrollHeight);
     window.scrollTo(0, y);
     if (y < document.documentElement.scrollHeight && state == 'scroll') {
         setTimeout(() => {
             scrollPage(speed);
         }, speed);
+    } else {
+        state = 'stop';
     }
 }

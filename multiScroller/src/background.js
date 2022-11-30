@@ -43,6 +43,16 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                 chrome.tabs.sendMessage(tab, {method: "startScroll"})
             }
             break;
+        case "paceDown":
+            for (tab of connectWindow) {
+                chrome.tabs.sendMessage(tab, {method: "speedDown"})
+            }
+            break;
+        case "paceUp":
+            for (tab of connectWindow) {
+                chrome.tabs.sendMessage(tab, {method: "speedUp"})
+            }
+            break;
         default:
             break;
     }

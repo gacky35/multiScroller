@@ -18,10 +18,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             scrollPage(5);
             break;
         case 'speedUp':
-            pace += 1;
+            pace += 0.1;
             break;
         case 'speedDown':
-            pace = pace == 1 ? pace : pace - 1;
+            pace = pace == 1 ? pace : pace - 0.1;
             break;
         default:
             console.log('no method');

@@ -9,3 +9,12 @@ document.getElementById("slow").onclick = function() {
 document.getElementById("high").onclick = function() {
     chrome.runtime.sendMessage({method: "paceUp"});
 }
+
+chrome.runtime.sendMessage({method: "getTabsInfo"}, function(tabs) {
+    let content = "";
+    let div = document.getElementById('windowList');
+    for (tab of tabs) {
+        
+    }
+    div.innerHTML = content;
+})

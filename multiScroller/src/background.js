@@ -13,13 +13,6 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
                         activeUrlList[tab.url] = 1
                     }
                 }
-                for (tab of tabs) {
-                    console.log(tab);
-                    if (activeUrlList[tab.url] >= 2) {
-                        chrome.tabs.sendMessage(tab.id, {method: 'checkPage'});
-                        connectWindow.push(tab.id)
-                    }
-                }
             }
         })
     }
@@ -52,6 +45,12 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             for (tab of connectWindow) {
                 chrome.tabs.sendMessage(tab, {method: "speedUp"})
             }
+            break;
+        case "getTabsInfo":
+            chrome.tabs.query({'active': true}, tabs => {
+                sendResponse({tabs: tabs});
+            })
+            return true;
             break;
         default:
             break;

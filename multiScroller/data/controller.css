@@ -2,3 +2,27 @@
     width: 50px;
     height: 50px;
 }
+
+.button#slow {
+    background: url("/pics/speedDown.png") no-repeat 15px center;
+}
+
+.button#start {
+    background: url("/pics/start.png") no-repeat 15px center;
+}
+
+.button#pose {
+    background: url("/pics/pose.png") no-repeat 15px center;
+}
+
+.button#high {
+    background: url("/pics/speedUp.png") no-repeat 15px center;
+}
+
+.buttonBlock {
+    text-align: center;
+}
+
+body {
+    min-width: 200px;
+}

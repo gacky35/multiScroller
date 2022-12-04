@@ -1,23 +1,3 @@
-var connectWindow = [];
-
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    if (changeInfo.status === 'complete') {
-        chrome.tabs.query({'active': true}, tabs => {
-            let activeUrlList = {};
-            connectWindow = [];
-            if (tabs.length >= 2) {
-                for (tab of tabs) {
-                    if (tab.url in activeUrlList) {
-                        activeUrlList[tab.url] += 1;
-                    } else {
-                        activeUrlList[tab.url] = 1
-                    }
-                }
-            }
-        })
-    }
-})
-
 chrome.contextMenus.create({
     title: 'multiScroller',
     onclick: function(e) {
@@ -27,6 +7,14 @@ chrome.contextMenus.create({
             "height": 110, "width": 199,
         })
     }
+})
+
+chrome.runtime.onInstalled.addListener(function() {
+    chrome.tabs.query({}, tabs => {
+        for (tab of tabs) {
+            chrome.tabs.reload(tab.id);
+        }
+    });
 })
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {

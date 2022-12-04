@@ -32,17 +32,17 @@ chrome.contextMenus.create({
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     switch(request.method) {
         case "startScroll":
-            for (tab of connectWindow) {
+            for (tab of request.data) {
                 chrome.tabs.sendMessage(tab, {method: "startScroll"})
             }
             break;
         case "paceDown":
-            for (tab of connectWindow) {
+            for (tab of request.data) {
                 chrome.tabs.sendMessage(tab, {method: "speedDown"})
             }
             break;
         case "paceUp":
-            for (tab of connectWindow) {
+            for (tab of request.data) {
                 chrome.tabs.sendMessage(tab, {method: "speedUp"})
             }
             break;

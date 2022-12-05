@@ -16,16 +16,3 @@ chrome.runtime.onInstalled.addListener(function() {
         }
     });
 })
-
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    switch(request.method) {
-        case "getTabsInfo":
-            chrome.tabs.query({'active': true}, tabs => {
-                sendResponse({tabs: tabs});
-            })
-            return true;
-            break;
-        default:
-            break;
-    }
-});

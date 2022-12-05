@@ -19,21 +19,6 @@ chrome.runtime.onInstalled.addListener(function() {
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     switch(request.method) {
-        case "startScroll":
-            for (tab of request.data) {
-                chrome.tabs.sendMessage(tab, {method: "startScroll"})
-            }
-            break;
-        case "paceDown":
-            for (tab of request.data) {
-                chrome.tabs.sendMessage(tab, {method: "speedDown"})
-            }
-            break;
-        case "paceUp":
-            for (tab of request.data) {
-                chrome.tabs.sendMessage(tab, {method: "speedUp"})
-            }
-            break;
         case "getTabsInfo":
             chrome.tabs.query({'active': true}, tabs => {
                 sendResponse({tabs: tabs});

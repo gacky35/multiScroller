@@ -2,11 +2,8 @@ var y = 0;
 var pace = 1;
 var state = "stop";
 
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function(request) {
     switch (request.method) {
-        case 'checkPage':
-            window.alert('connect pages');
-            break;
         case 'startScroll':
             if (state == 'scroll') {
                 state = 'stop';
